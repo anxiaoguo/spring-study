@@ -12,6 +12,7 @@
         <module>spring-ioc-study</module>
         <module>spring-aop-study</module>
         <module>spring-aop-anno-study</module>
+        <module>spring-mvc-study</module>
     </modules>
 
     <name>spring-study</name>

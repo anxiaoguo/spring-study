@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/src/main/webapp/static/error.html</location>
+    </error-page>
+
+<!--    配置前端控制器-->
+    <servlet>
+        <servlet-name>app</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-mvc.xml</param-value>
+        </init-param>
+        <!--加上这个表示启动Tomcat时就会初始化DispatcherServlet-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--
+    1. /* 表示拦截所有 html css js jsp image 控制器
+    2. / 拦截js css image html 控制器 不拦截jsp文件   强烈推荐这种方式
+    3. *.action *.do  拦截后缀名结尾的，这种方式就会导致目标handler的路径都得以相应的后缀名结尾
+    -->
+    <servlet-mapping>
+        <servlet-name>app</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
