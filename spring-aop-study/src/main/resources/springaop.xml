@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--将目标类交给Spring IOC容器管理-->
+    <bean id="userService" class="aop.UserServiceImpl"/>
+
+    <!--将通知增强类交给Spring IOC容器管理-->
+    <bean id="myAdvice" class="aop.MyAdvice"/>
+
+    <!--
+    aop配置
+    1.编写aop:pointcut 表示选中目标类的具体方法
+    2.配置aop:advisor 表示切面的意思 此处可以理解为把通知加到目标方法上执行的意思
+    -->
+    <aop:config>
+        <aop:pointcut id="cut" expression="execution(* aop.*.*(..))"></aop:pointcut>
+
+        <aop:advisor advice-ref="myAdvice" pointcut-ref="cut"></aop:advisor>
+    </aop:config>
+
+</beans>
